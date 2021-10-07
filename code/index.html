@@ -1,0 +1,286 @@
+<head>
+  
+
+  <meta name="theme-color" content="#244ec7">
+  
+    <title>健康码</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="manifest" href="manifest.json" />
+    <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
+    <link rel="icon" href="/e.png" type="image/png" />
+    <link rel="stylesheet" href="./font/iconfont.css">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+          
+        }
+        .box{
+            background: url(./testabc.png)  top left no-repeat;
+            background-size: 100% 100%;/*按比例缩放*/
+            /* width: 100%; */
+            height: 880px;
+        }
+        .header{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            display: flex;
+            color: #fff;
+            height: 240px;
+            background-color: #244ec7;
+            /* background-image: linear-gradient(to right,#1866fe 0%,#2196ff 100%); */
+        }
+        .header .icon-fanhui{
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .icon{
+            width: 40px;
+            height: 40px;
+        }
+        .back{
+            display: inline-block;
+            width: 12px;
+            height: 18px;
+            margin-left: 10px;
+            margin-top: 11px;
+            background: url(./back.png) center center no-repeat;
+            background-size: 100% 100%;
+        }
+        .title{
+            flex: 1;
+            line-height: 40px;
+        }
+
+        .msg{
+            padding-top: 40px;
+            height: 150px;
+            padding-left: 20px;
+            padding-right: 20px;
+            position: relative;
+            top: 110px;
+            /* background-color: #1F87F1; */
+            
+            margin:20px 20px  20px 20px;
+            border-radius: 10px;
+            background-image: linear-gradient(to right,#1866fe 0%,#2196ff 100%);
+        }
+        .msg .title{
+            display: flex;
+            justify-content: space-between;
+            color: #B1E3FF;
+        }
+        .msg .title-name{
+            width: 70px;
+        }
+        .msg .title-id{
+            flex: 1;
+        }
+        .msg .icon{
+            text-align: right;
+            font-size: 20px;
+        }
+        .msg .msg-msg{
+            display: flex;
+            align-items: center;
+            height: 22px;
+            color: #fff;
+        }
+        .msg .msg-msg #name{
+            width: 70px;
+        }
+        .msg .msg-msg #idNo{
+            flex: 1;
+        }
+
+        .content{
+            position: relative;
+            top: 120px;
+            padding-bottom: 50px;
+        }
+        .content .msg-box{
+            margin: 0 20px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .content .msg-box .times{
+            color: #404040;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .content .msg-box #ewm{
+            position: relative;
+            margin: 0 auto;
+            width: 170px;
+        }
+        .content .msg-box #ewm .icon-e{
+            position: absolute;
+            left: -30px;
+            top: -30px;
+            width: 50px;
+            height: 60px;
+            background: url(./icon.png) top left no-repeat;
+            background-size: 100% 100%;
+        }
+        .content .msg-box .ts{
+            margin: 20px;
+            padding: 20px;
+            background-color: #F9F9F9;
+            color: #8D8D8D;
+            font-size: 12px;
+            text-align: center;
+        }
+        .content .msg-box .btns{
+            display: flex;
+            justify-content: space-between;
+            margin-left: 20px;
+            margin-right: 20px;
+            padding-bottom: 20px;
+            color: #BABABA;
+            font-size: 14px;
+        }
+        .content .msg-box .btns a{
+            color: #0D78EF;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .content .wxts{
+            margin: 20px;
+            font-size: 12px;
+            color: #929196;
+            text-align: center;
+        }
+
+        .footer{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            background-color: #F8F7FC;
+        }
+        .footer .icon{
+            color: #B2B1B6;
+            font-size: 20px;
+        }
+        .footer .call{
+            color: #BBBDC4;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .footer .ms{
+            color: #B2B1B6;
+            font-size: 13px;
+            padding-bottom: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+  <div class="box">
+       <div id="name" style="width:200px;color: #fff;size:30px;font-weight:bold;position: relative;top: 190px;left: 32px;">
+               李安然
+       </div>
+       <div id="date" style="width:200px;color: #000;size:33px;position: relative;top: 281px;left: 92px;font-family:sans-serif;">
+               2021-10-07 12:00
+       </div>
+  </div>
+
+  <script>
+   window.onload = function(){
+       init()
+   }
+   function init() {
+       // 获取url上的参数
+       var name = decodeURI(apis.getQueryVariable("name") || '')
+    //    if(name.length == 2){
+    //        var name2 = name//"*"+name[1]
+    //    }else{
+    //        var name2 = name.replace(name[1], "*")
+    //    }
+       var id = decodeURI(apis.getQueryVariable("id") || '')
+       var id2 = id.replace(/^(.{1})(?:\d+)(.{1})$/,"$1****************$2")
+       document.getElementById("name").innerHTML = name
+       // document.getElementById("idNo").innerHTML = id2
+       document.getElementById("date").innerHTML = apis.dateFormatter(new Date().getTime(), "dateTime")
+    }
+   var apis = {
+       dateFormatter: function(t, type){
+           let time = new Date(parseInt(t))
+           let year = time.getFullYear()
+           let month = time.getMonth() + 1
+           month = month > 9 ? month : '0' + month  //月份是从0开始的
+           let day = time.getDate()
+           day = day > 9 ? day : '0' + day
+           let hour = time.getHours()
+           hour = hour > 9 ? hour : '0' + hour
+           let minute = time.getMinutes()
+           minute = minute > 9 ? minute : '0' + minute
+           let second = time.getSeconds()
+           second = second > 9 ? second : '0' + second
+           let week = time.getDay()
+           let weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+           week = weeks[week];
+           switch (type) {
+               case "dateTime":
+                   return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
+                   break;
+               case "dateTimeNs":
+                   return year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+                   break;
+               case "date":
+                   return year + '-' + month + '-' + day
+                   break;
+               case "time":
+                   return hour + ':' + minute + ':' + second
+                   break;
+               case "week":
+                   return week
+                   break;
+               case "dateTimeWeek":
+                   return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second + " " + week
+                   break;
+               default:
+                   return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
+                   break;
+           }
+       },
+       getQueryVariable: function(variable){
+           var query = window.location.href.substring(window.location.href.indexOf("?")+1)
+           var vars = query.split("&");
+           for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){
+                   return pair[1];
+               }
+           }
+           return(false);
+       }
+   }
+
+    if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('sw.js')
+        .then(function (registration) {
+          console.log('Registered events at scope: ', registration.scope);
+        });
+    }
+
+    fetch('./data.json')
+
+    var statusEl = document.querySelector('#network-status')
+    if (!navigator.onLine) {
+      statusEl.classList = ['is-offline']
+      statusEl.innerText = 'Offline'
+    }
+  </script>
+</body>
