@@ -191,7 +191,7 @@
        <div id="name" style="width:200px;color: #fff;size:30px;font-weight:bold;position: relative;top: 190px;left: 32px;">
                李安然
        </div>
-       <div id="date" style="width:200px;color: #000;size:33px;position: relative;top: 281px;left: 92px;font-family:sans-serif;">
+       <div onclick="resTime()" id="date" style="width:200px;color: #000;size:33px;position: relative;top: 281px;left: 92px;font-family:sans-serif;">
                2021-10-07 12:00
        </div>
   </div>
@@ -199,7 +199,13 @@
   <script>
    window.onload = function(){
        init()
+       localStorage.setItem('state', 1);
    }
+
+   function resTime(){
+    document.getElementById("date").innerHTML = apis.dateFormatter(new Date().getTime(), "dateTime")
+   }
+  
    function init() {
        // 获取url上的参数
        var name = decodeURI(apis.getQueryVariable("name") || '')
@@ -268,19 +274,24 @@
        }
    }
 
-    if (navigator.serviceWorker != null) {
+
+   if (navigator.serviceWorker != null) {
       navigator.serviceWorker.register('sw.js')
         .then(function (registration) {
           console.log('Registered events at scope: ', registration.scope);
         });
     }
+    // fetch('./data.json')
 
-    fetch('./data.json')
-
-    var statusEl = document.querySelector('#network-status')
-    if (!navigator.onLine) {
-      statusEl.classList = ['is-offline']
-      statusEl.innerText = 'Offline'
-    }
+    // var statusEl = document.querySelector('#network-status')
+    // if (!navigator.onLine) {
+    //     // document.getElementById("date").innerHTML = apis.dateFormatter(new Date().getTime(), "dateTime")
+    //     alert('离线')
+    // //   statusEl.classList = ['is-offline']
+    // //   statusEl.innerText = 'Offline'
+    // }else{
+    //     alert('在线')
+    // //   statusEl.classL
+    // }
   </script>
 </body>

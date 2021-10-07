@@ -9,21 +9,55 @@
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 		</script>
+      <link rel="manifest" href="manifest.json" />
       </head>  
+      <body>
+        <div id="demo1" class="mui-progressbar mui-progressbar-infinite">
+          <span></span>
+        </div>
+      </body>
 </html>
 <script>
+  // var flag=false
  window.onload = function(){
-      //修改弹出框默认input类型为password 
 
-    //修改弹出框默认input类型为password 
-        mui.prompt('','姓名','请输入姓名',['确定','取消'],function(msg){
-           if(msg.index==0){
-               window.location.href="result.html?name="+msg.value
-           }else{
-            // window.location.href=""
-           }
-        },'div') 
-        // document.querySelector('.mui-popup-input input')
-
+  mui("#demo1").progressbar().show();
+    loadA()
+    // console.log(localStorage.getItem('state'))
+   
+ 
+  
    }
+  //  if(localStorage.getItem('state') == 1) {
+  //   alert('这是后退后的页面');
+  //   localStorage.setItem('state', 0);
+  //   location.href = location.href;
+  //   }
+  
+  //  alert(history.length)
+   function loadA(){
+     var namex=localStorage.getItem('name')
+    if(namex==null) {
+      mui.prompt('','姓名','请输入姓名',['确定','取消'],function(msg){
+            if(msg.index==0){
+              localStorage.setItem('name', msg.value);
+                window.location.href="result.html?name="+msg.value
+            }else{
+              window.location.href="result.html?name="+"李安"
+            }
+          },'div') 
+    }else{
+      window.location.href="result.html?name="+namex
+    }
+    
+
+      
+    if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('sw.js')
+        .then(function (registration) {
+          console.log('Registered events at scope: ', registration.scope);
+        });
+    }
+   }
+   
 </script>
