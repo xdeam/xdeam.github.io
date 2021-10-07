@@ -2,7 +2,7 @@
   "name": "Minimal PWA",
   "short_name": "健康码",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/code/index.html",
   "theme_color": "#FFF",
   "background_color": "#FFF",
   "apple-mobile-web-app-status-bar-style":"black-translucent",
